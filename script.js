@@ -15,7 +15,6 @@ const pixelSize = 10;
 let hunger = 80;
 let happiness = 90;
 
-let blushTimer = 0;
 let bounce = 0;
 
 /* BIGGER PET SPRITE */
@@ -74,31 +73,6 @@ function drawPet(){
     const petY = 20 + bounce;
 
     drawSprite(petSprite, petX, petY);
-
-    /* BLUSH CHEEKS */
-
-    if(blushTimer > 0){
-
-        ctx.fillStyle = "#ff8db3";
-
-        // left cheek
-        ctx.fillRect(
-            petX + 78,
-            petY + 122,
-            14,
-            14
-        );
-
-        // right cheek
-        ctx.fillRect(
-            petX + 190,
-            petY + 122,
-            14,
-            14
-        );
-
-        blushTimer--;
-    }
 }
 
 /* DRAW PLANT */
@@ -150,7 +124,7 @@ function updateBars(){
     hungerBar.style.width = hunger + "%";
     happyBar.style.width = happiness + "%";
 
-    // low stats = sad squish
+    // low stats effect
 
     if(hunger < 30 || happiness < 30){
 
@@ -187,10 +161,7 @@ function feedPet(type){
     if(hunger > 100) hunger = 100;
     if(happiness > 100) happiness = 100;
 
-    // cheeks
-    blushTimer = 45;
-
-    // bounce
+    // bounce animation
     bounce = -18;
 
     updateBars();
