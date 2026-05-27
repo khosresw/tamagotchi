@@ -1,53 +1,20 @@
-<!-- index.html -->
+<!-- Replace ONLY the food menu section in index.html with this -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pixel Tamagotchi</title>
+<div class="food-bar">
 
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="tamagotchi">
-
-    <div class="screen">
-
-        <div class="pet">
-
-            <div class="head">
-
-                <div class="eye left-eye"></div>
-                <div class="eye right-eye"></div>
-
-                <div class="cheek left-cheek cheek"></div>
-                <div class="cheek right-cheek cheek"></div>
-
-                <div class="mouth"></div>
-
-            </div>
-
-        </div>
-
-        <div class="stats">
-            💧 <span id="water">100</span>
-            &nbsp;&nbsp;
-            🍎 <span id="food">100</span>
-            <br>
-            <span id="mood">HAPPY</span>
-        </div>
-
+    <div class="food-item" data-food="chicken">
+        🍗
+        <span>Chicken</span>
     </div>
 
-    <div class="buttons">
-        <button id="waterBtn">💧 WATER</button>
-        <button id="appleBtn">🍎 APPLE</button>
+    <div class="food-item" data-food="cake">
+        🍰
+        <span>Cake</span>
+    </div>
+
+    <div class="food-item" data-food="icecream">
+        🍦
+        <span>Ice Cream</span>
     </div>
 
 </div>
-
-<script src="script.js"></script>
-</body>
-</html>
