@@ -1,0 +1,130 @@
+/* style.css */
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#8ecbff;
+    font-family:Arial;
+}
+
+.tamagotchi{
+    width:320px;
+    height:500px;
+    background:#ff8fd1;
+    border-radius:50% / 45%;
+    border:10px solid #ff5db9;
+    box-shadow:
+        inset -8px -8px 0 rgba(0,0,0,0.15),
+        0 15px 30px rgba(0,0,0,0.3);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding-top:40px;
+    position:relative;
+}
+
+.screen{
+    width:230px;
+    height:220px;
+    background:#c8ffd5;
+    border:8px solid #444;
+    border-radius:20px;
+    position:relative;
+    overflow:hidden;
+}
+
+.face{
+    position:absolute;
+    top:40px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.eyes{
+    display:flex;
+    gap:50px;
+    justify-content:center;
+}
+
+.eye{
+    width:18px;
+    height:35px;
+    background:black;
+    border-radius:50%;
+    animation:blink 5s infinite;
+}
+
+.cheeks{
+    position:relative;
+}
+
+.cheek{
+    width:22px;
+    height:22px;
+    background:pink;
+    border-radius:50%;
+    position:absolute;
+    top:10px;
+    opacity:0;
+    transition:0.4s;
+}
+
+.left-cheek{
+    left:-25px;
+}
+
+.right-cheek{
+    right:-25px;
+}
+
+.mouth{
+    width:60px;
+    height:30px;
+    border-bottom:6px solid black;
+    border-radius:0 0 60px 60px;
+    margin:25px auto 0;
+}
+
+.stats{
+    position:absolute;
+    bottom:10px;
+    width:100%;
+    text-align:center;
+    font-size:14px;
+}
+
+.buttons{
+    position:absolute;
+    bottom:40px;
+    display:flex;
+    gap:15px;
+}
+
+button{
+    border:none;
+    padding:12px 16px;
+    border-radius:20px;
+    background:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.2s;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+@keyframes blink{
+    0%,95%,100%{
+        transform:scaleY(1);
+    }
+
+    97%{
+        transform:scaleY(0.1);
+    }
+}
