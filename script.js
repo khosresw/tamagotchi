@@ -85,7 +85,6 @@ function drawPet(){
     const petX = 40;
     const petY = 20 + bounce;
 
-    // draw body
     drawSprite(petSprite, petX, petY);
 
     /* EYES */
@@ -94,17 +93,14 @@ function drawPet(){
 
     if(!sleeping){
 
-        // open eyes
         ctx.fillRect(petX + 105, petY + 70, 12, 12);
         ctx.fillRect(petX + 175, petY + 70, 12, 12);
 
     }else{
 
-        // closed eyes
         ctx.fillRect(petX + 100, petY + 75, 25, 4);
         ctx.fillRect(petX + 170, petY + 75, 25, 4);
 
-        // ZZZ
         ctx.font = "24px monospace";
 
         ctx.fillText("Z", petX + 250, petY + 40);
@@ -130,7 +126,7 @@ function drawPet(){
         ctx.beginPath();
 
         ctx.moveTo(petX + 125, petY + 145);
-        ctx.lineTo(petX + 138, petY + 175);
+        ctx.lineTo(petX + 138, petY + 163);
         ctx.lineTo(petX + 151, petY + 145);
 
         ctx.fill();
@@ -142,7 +138,7 @@ function drawPet(){
         ctx.beginPath();
 
         ctx.moveTo(petX + 155, petY + 145);
-        ctx.lineTo(petX + 168, petY + 175);
+        ctx.lineTo(petX + 168, petY + 163);
         ctx.lineTo(petX + 181, petY + 145);
 
         ctx.fill();
@@ -158,72 +154,190 @@ function drawFairy(){
         const fx = 255;
         const fy = 35;
 
+        // 2x smaller
+        const scale = 0.5;
+
         /* WINGS */
 
         ctx.fillStyle = "#dff5f2";
 
-        ctx.fillRect(fx - 45, fy + 30, 35, 55);
-        ctx.fillRect(fx - 60, fy + 45, 20, 35);
+        ctx.fillRect(
+            fx - 45 * scale,
+            fy + 30 * scale,
+            35 * scale,
+            55 * scale
+        );
 
-        ctx.fillRect(fx + 55, fy + 30, 35, 55);
-        ctx.fillRect(fx + 90, fy + 45, 20, 35);
+        ctx.fillRect(
+            fx - 60 * scale,
+            fy + 45 * scale,
+            20 * scale,
+            35 * scale
+        );
+
+        ctx.fillRect(
+            fx + 55 * scale,
+            fy + 30 * scale,
+            35 * scale,
+            55 * scale
+        );
+
+        ctx.fillRect(
+            fx + 90 * scale,
+            fy + 45 * scale,
+            20 * scale,
+            35 * scale
+        );
 
         /* HAIR */
 
         ctx.fillStyle = "#d85d83";
 
-        ctx.fillRect(fx, fy, 70, 40);
-        ctx.fillRect(fx - 10, fy + 10, 20, 35);
-        ctx.fillRect(fx + 60, fy + 10, 20, 35);
+        ctx.fillRect(
+            fx,
+            fy,
+            70 * scale,
+            40 * scale
+        );
+
+        ctx.fillRect(
+            fx - 10 * scale,
+            fy + 10 * scale,
+            20 * scale,
+            35 * scale
+        );
+
+        ctx.fillRect(
+            fx + 60 * scale,
+            fy + 10 * scale,
+            20 * scale,
+            35 * scale
+        );
 
         /* FACE */
 
         ctx.fillStyle = "#f7c38b";
 
-        ctx.fillRect(fx + 15, fy + 35, 40, 35);
+        ctx.fillRect(
+            fx + 15 * scale,
+            fy + 35 * scale,
+            40 * scale,
+            35 * scale
+        );
 
         /* EYES */
 
         ctx.fillStyle = "#000";
 
-        ctx.fillRect(fx + 22, fy + 45, 6, 10);
-        ctx.fillRect(fx + 42, fy + 45, 6, 10);
+        ctx.fillRect(
+            fx + 22 * scale,
+            fy + 45 * scale,
+            6 * scale,
+            10 * scale
+        );
+
+        ctx.fillRect(
+            fx + 42 * scale,
+            fy + 45 * scale,
+            6 * scale,
+            10 * scale
+        );
 
         /* BODY */
 
         ctx.fillStyle = "#36a890";
 
-        ctx.fillRect(fx + 12, fy + 70, 46, 55);
+        ctx.fillRect(
+            fx + 12 * scale,
+            fy + 70 * scale,
+            46 * scale,
+            55 * scale
+        );
 
         /* ARMS */
 
         ctx.fillStyle = "#f7c38b";
 
-        ctx.fillRect(fx - 10, fy + 70, 22, 10);
-        ctx.fillRect(fx + 58, fy + 70, 22, 10);
+        ctx.fillRect(
+            fx - 10 * scale,
+            fy + 70 * scale,
+            22 * scale,
+            10 * scale
+        );
+
+        ctx.fillRect(
+            fx + 58 * scale,
+            fy + 70 * scale,
+            22 * scale,
+            10 * scale
+        );
 
         /* LEGS */
 
-        ctx.fillRect(fx + 20, fy + 125, 10, 30);
-        ctx.fillRect(fx + 42, fy + 125, 10, 30);
+        ctx.fillRect(
+            fx + 20 * scale,
+            fy + 125 * scale,
+            10 * scale,
+            30 * scale
+        );
+
+        ctx.fillRect(
+            fx + 42 * scale,
+            fy + 125 * scale,
+            10 * scale,
+            30 * scale
+        );
 
         /* SHOES */
 
         ctx.fillStyle = "#36a890";
 
-        ctx.fillRect(fx + 16, fy + 150, 16, 10);
-        ctx.fillRect(fx + 38, fy + 150, 16, 10);
+        ctx.fillRect(
+            fx + 16 * scale,
+            fy + 150 * scale,
+            16 * scale,
+            10 * scale
+        );
+
+        ctx.fillRect(
+            fx + 38 * scale,
+            fy + 150 * scale,
+            16 * scale,
+            10 * scale
+        );
 
         /* SPARKLES */
 
         ctx.fillStyle = "#fff";
 
-        ctx.fillRect(fx + 95, fy + 20, 8, 8);
-        ctx.fillRect(fx + 105, fy + 30, 6, 6);
-        ctx.fillRect(fx + 92, fy + 38, 5, 5);
+        ctx.fillRect(
+            fx + 95 * scale,
+            fy + 20 * scale,
+            8 * scale,
+            8 * scale
+        );
 
-        ctx.font = "18px monospace";
-        ctx.fillText("✨", fx + 90, fy + 15);
+        ctx.fillRect(
+            fx + 105 * scale,
+            fy + 30 * scale,
+            6 * scale,
+            6 * scale
+        );
+
+        ctx.fillRect(
+            fx + 92 * scale,
+            fy + 38 * scale,
+            5 * scale,
+            5 * scale
+        );
+
+        ctx.font = "12px monospace";
+
+        ctx.fillText(
+            "✨",
+            fx + 90 * scale,
+            fy + 15 * scale
+        );
     }
 }
 
@@ -235,13 +349,10 @@ function drawCar(){
 
         ctx.fillStyle = "#000";
 
-        // body
         ctx.fillRect(250, 245, 90, 30);
 
-        // roof
         ctx.fillRect(275, 220, 40, 25);
 
-        // wheels
         ctx.beginPath();
         ctx.arc(270, 280, 10, 0, Math.PI * 2);
         ctx.fill();
@@ -258,10 +369,8 @@ function drawPlant(){
 
     ctx.fillStyle = "#000";
 
-    // stem
     ctx.fillRect(340, 200, 10, 80);
 
-    // leaves
     ctx.fillRect(315, 200, 30, 10);
     ctx.fillRect(350, 225, 30, 10);
     ctx.fillRect(315, 250, 30, 10);
@@ -322,28 +431,15 @@ function feedPet(type){
     hunger += 10;
     happiness += 6;
 
-    if(type === "cake"){
-
-        happiness += 10;
-    }
-
-    if(type === "ice"){
-
-        happiness += 5;
-    }
-
-    if(type === "chicken"){
-
-        hunger += 8;
-    }
+    if(type === "cake") happiness += 10;
+    if(type === "ice") happiness += 5;
+    if(type === "chicken") hunger += 8;
 
     if(hunger > 100) hunger = 100;
     if(happiness > 100) happiness = 100;
 
-    // bounce animation
     bounce = -18;
 
-    // lose tooth
     loseTooth();
 
     updateBars();
@@ -375,7 +471,6 @@ sleepBtn.addEventListener("click", () => {
 
     sleeping = true;
 
-    // fairy appears if missing tooth
     if(!leftTooth || !rightTooth){
 
         showFairy = true;
@@ -406,7 +501,6 @@ function animate(){
 
     drawCar();
 
-    // bounce easing
     if(bounce < 0){
 
         bounce += 1.2;
