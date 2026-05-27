@@ -106,33 +106,46 @@ function drawPet(){
         ctx.fillText("Z", petX + 270, petY + 70);
     }
 
-    /* TEETH */
 
-    ctx.fillStyle = "#000";
 
-    // left tooth
-    if(leftTooth){
+/* MOUTH */
 
-        ctx.beginPath();
+ctx.fillStyle = "#000";
 
-        ctx.moveTo(petX + 115, petY + 168);
-        ctx.lineTo(petX + 125, petY + 188);
-        ctx.lineTo(petX + 135, petY + 168);
+// rectangular mouth
+ctx.fillRect(
+    petX + 110,
+    petY + 145,
+    80,
+    30
+);
 
-        ctx.fill();
-    }
+/* TEETH */
 
-    // right tooth
-    if(rightTooth){
+ctx.fillStyle = "#bcc0aa";
 
-        ctx.beginPath();
+// left tooth
+if(leftTooth){
 
-        ctx.moveTo(petX + 165, petY + 168);
-        ctx.lineTo(petX + 175, petY + 188);
-        ctx.lineTo(petX + 185, petY + 168);
+    ctx.beginPath();
 
-        ctx.fill();
-    }
+    ctx.moveTo(petX + 125, petY + 145);
+    ctx.lineTo(petX + 138, petY + 175);
+    ctx.lineTo(petX + 151, petY + 145);
+
+    ctx.fill();
+}
+
+// right tooth
+if(rightTooth){
+
+    ctx.beginPath();
+
+    ctx.moveTo(petX + 155, petY + 145);
+    ctx.lineTo(petX + 168, petY + 175);
+    ctx.lineTo(petX + 181, petY + 145);
+
+    ctx.fill();
 }
 
 /* DRAW TOOTH FAIRY */
