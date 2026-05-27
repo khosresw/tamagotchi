@@ -109,11 +109,18 @@ function drawPet(){
 
     /* MOUTH */
 
+    ctx.fillStyle = "#000";
+
+    const mouthX = petX + 110;
+    const mouthY = petY + 132;
+    const mouthW = 80;
+    const mouthH = 30;
+
     ctx.fillRect(
-        petX + 110,
-        petY + 145,
-        80,
-        30
+        mouthX,
+        mouthY,
+        mouthW,
+        mouthH
     );
 
     /* TEETH */
@@ -125,9 +132,9 @@ function drawPet(){
 
         ctx.beginPath();
 
-        ctx.moveTo(petX + 125, petY + 145);
-        ctx.lineTo(petX + 138, petY + 163);
-        ctx.lineTo(petX + 151, petY + 145);
+        ctx.moveTo(mouthX + 15, mouthY);
+        ctx.lineTo(mouthX + 28, mouthY + 18);
+        ctx.lineTo(mouthX + 41, mouthY);
 
         ctx.fill();
     }
@@ -137,9 +144,9 @@ function drawPet(){
 
         ctx.beginPath();
 
-        ctx.moveTo(petX + 155, petY + 145);
-        ctx.lineTo(petX + 168, petY + 163);
-        ctx.lineTo(petX + 181, petY + 145);
+        ctx.moveTo(mouthX + 45, mouthY);
+        ctx.lineTo(mouthX + 58, mouthY + 18);
+        ctx.lineTo(mouthX + 71, mouthY);
 
         ctx.fill();
     }
@@ -154,189 +161,78 @@ function drawFairy(){
         const fx = 255;
         const fy = 35;
 
-        // 2x smaller
-        const scale = 0.5;
+        const s = 0.5;
 
         /* WINGS */
 
         ctx.fillStyle = "#dff5f2";
 
-        ctx.fillRect(
-            fx - 45 * scale,
-            fy + 30 * scale,
-            35 * scale,
-            55 * scale
-        );
+        ctx.fillRect(fx - 45 * s, fy + 30 * s, 35 * s, 55 * s);
+        ctx.fillRect(fx - 60 * s, fy + 45 * s, 20 * s, 35 * s);
 
-        ctx.fillRect(
-            fx - 60 * scale,
-            fy + 45 * scale,
-            20 * scale,
-            35 * scale
-        );
-
-        ctx.fillRect(
-            fx + 55 * scale,
-            fy + 30 * scale,
-            35 * scale,
-            55 * scale
-        );
-
-        ctx.fillRect(
-            fx + 90 * scale,
-            fy + 45 * scale,
-            20 * scale,
-            35 * scale
-        );
+        ctx.fillRect(fx + 55 * s, fy + 30 * s, 35 * s, 55 * s);
+        ctx.fillRect(fx + 90 * s, fy + 45 * s, 20 * s, 35 * s);
 
         /* HAIR */
 
         ctx.fillStyle = "#d85d83";
 
-        ctx.fillRect(
-            fx,
-            fy,
-            70 * scale,
-            40 * scale
-        );
-
-        ctx.fillRect(
-            fx - 10 * scale,
-            fy + 10 * scale,
-            20 * scale,
-            35 * scale
-        );
-
-        ctx.fillRect(
-            fx + 60 * scale,
-            fy + 10 * scale,
-            20 * scale,
-            35 * scale
-        );
+        ctx.fillRect(fx, fy, 70 * s, 40 * s);
+        ctx.fillRect(fx - 10 * s, fy + 10 * s, 20 * s, 35 * s);
+        ctx.fillRect(fx + 60 * s, fy + 10 * s, 20 * s, 35 * s);
 
         /* FACE */
 
         ctx.fillStyle = "#f7c38b";
 
-        ctx.fillRect(
-            fx + 15 * scale,
-            fy + 35 * scale,
-            40 * scale,
-            35 * scale
-        );
+        ctx.fillRect(fx + 15 * s, fy + 35 * s, 40 * s, 35 * s);
 
         /* EYES */
 
         ctx.fillStyle = "#000";
 
-        ctx.fillRect(
-            fx + 22 * scale,
-            fy + 45 * scale,
-            6 * scale,
-            10 * scale
-        );
-
-        ctx.fillRect(
-            fx + 42 * scale,
-            fy + 45 * scale,
-            6 * scale,
-            10 * scale
-        );
+        ctx.fillRect(fx + 22 * s, fy + 45 * s, 6 * s, 10 * s);
+        ctx.fillRect(fx + 42 * s, fy + 45 * s, 6 * s, 10 * s);
 
         /* BODY */
 
         ctx.fillStyle = "#36a890";
 
-        ctx.fillRect(
-            fx + 12 * scale,
-            fy + 70 * scale,
-            46 * scale,
-            55 * scale
-        );
+        ctx.fillRect(fx + 12 * s, fy + 70 * s, 46 * s, 55 * s);
 
         /* ARMS */
 
         ctx.fillStyle = "#f7c38b";
 
-        ctx.fillRect(
-            fx - 10 * scale,
-            fy + 70 * scale,
-            22 * scale,
-            10 * scale
-        );
-
-        ctx.fillRect(
-            fx + 58 * scale,
-            fy + 70 * scale,
-            22 * scale,
-            10 * scale
-        );
+        ctx.fillRect(fx - 10 * s, fy + 70 * s, 22 * s, 10 * s);
+        ctx.fillRect(fx + 58 * s, fy + 70 * s, 22 * s, 10 * s);
 
         /* LEGS */
 
-        ctx.fillRect(
-            fx + 20 * scale,
-            fy + 125 * scale,
-            10 * scale,
-            30 * scale
-        );
-
-        ctx.fillRect(
-            fx + 42 * scale,
-            fy + 125 * scale,
-            10 * scale,
-            30 * scale
-        );
+        ctx.fillRect(fx + 20 * s, fy + 125 * s, 10 * s, 30 * s);
+        ctx.fillRect(fx + 42 * s, fy + 125 * s, 10 * s, 30 * s);
 
         /* SHOES */
 
         ctx.fillStyle = "#36a890";
 
-        ctx.fillRect(
-            fx + 16 * scale,
-            fy + 150 * scale,
-            16 * scale,
-            10 * scale
-        );
-
-        ctx.fillRect(
-            fx + 38 * scale,
-            fy + 150 * scale,
-            16 * scale,
-            10 * scale
-        );
+        ctx.fillRect(fx + 16 * s, fy + 150 * s, 16 * s, 10 * s);
+        ctx.fillRect(fx + 38 * s, fy + 150 * s, 16 * s, 10 * s);
 
         /* SPARKLES */
 
         ctx.fillStyle = "#fff";
 
-        ctx.fillRect(
-            fx + 95 * scale,
-            fy + 20 * scale,
-            8 * scale,
-            8 * scale
-        );
-
-        ctx.fillRect(
-            fx + 105 * scale,
-            fy + 30 * scale,
-            6 * scale,
-            6 * scale
-        );
-
-        ctx.fillRect(
-            fx + 92 * scale,
-            fy + 38 * scale,
-            5 * scale,
-            5 * scale
-        );
+        ctx.fillRect(fx + 95 * s, fy + 20 * s, 8 * s, 8 * s);
+        ctx.fillRect(fx + 105 * s, fy + 30 * s, 6 * s, 6 * s);
+        ctx.fillRect(fx + 92 * s, fy + 38 * s, 5 * s, 5 * s);
 
         ctx.font = "12px monospace";
 
         ctx.fillText(
             "✨",
-            fx + 90 * scale,
-            fy + 15 * scale
+            fx + 90 * s,
+            fy + 15 * s
         );
     }
 }
