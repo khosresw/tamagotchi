@@ -17,6 +17,11 @@ let happiness = 90;
 
 let bounce = 0;
 
+/* TOOTH SYSTEM */
+
+let leftTooth = true;
+let rightTooth = true;
+
 /* BIGGER PET SPRITE */
 
 const petSprite = [
@@ -73,6 +78,34 @@ function drawPet(){
     const petY = 20 + bounce;
 
     drawSprite(petSprite, petX, petY);
+
+    /* TRIANGLE TEETH */
+
+    ctx.fillStyle = "#000";
+
+    // left tooth
+    if(leftTooth){
+
+        ctx.beginPath();
+
+        ctx.moveTo(petX + 115, petY + 168);
+        ctx.lineTo(petX + 125, petY + 188);
+        ctx.lineTo(petX + 135, petY + 168);
+
+        ctx.fill();
+    }
+
+    // right tooth
+    if(rightTooth){
+
+        ctx.beginPath();
+
+        ctx.moveTo(petX + 165, petY + 168);
+        ctx.lineTo(petX + 175, petY + 188);
+        ctx.lineTo(petX + 185, petY + 168);
+
+        ctx.fill();
+    }
 }
 
 /* DRAW PLANT */
@@ -124,7 +157,7 @@ function updateBars(){
     hungerBar.style.width = hunger + "%";
     happyBar.style.width = happiness + "%";
 
-    // low stats effect
+    // low stats darken screen
 
     if(hunger < 30 || happiness < 30){
 
@@ -133,6 +166,20 @@ function updateBars(){
     }else{
 
         ctx.filter = "brightness(1)";
+    }
+}
+
+/* LOSE TOOTH */
+
+function loseTooth(){
+
+    if(leftTooth){
+
+        leftTooth = false;
+
+    }else if(rightTooth){
+
+        rightTooth = false;
     }
 }
 
@@ -163,6 +210,9 @@ function feedPet(type){
 
     // bounce animation
     bounce = -18;
+
+    // lose tooth after eating
+    loseTooth();
 
     updateBars();
 }
