@@ -10,6 +10,12 @@ const feedBtn = document.getElementById("feedBtn");
 const cakeBtn = document.getElementById("cakeBtn");
 const iceBtn = document.getElementById("iceBtn");
 
+/* ADD THIS BUTTON IN HTML
+<button id="sleepBtn">😴 Sleep</button>
+*/
+
+const sleepBtn = document.getElementById("sleepBtn");
+
 const pixelSize = 10;
 
 let hunger = 80;
@@ -17,10 +23,17 @@ let happiness = 90;
 
 let bounce = 0;
 
+let sleeping = false;
+
 /* TOOTH SYSTEM */
 
 let leftTooth = true;
 let rightTooth = true;
+
+/* TOOTH FAIRY */
+
+let showFairy = false;
+let hasCar = false;
 
 /* BIGGER PET SPRITE */
 
@@ -79,11 +92,22 @@ function drawPet(){
 
     drawSprite(petSprite, petX, petY);
 
+    /* SLEEP EYES */
+
+    if(sleeping){
+
+        ctx.fillRect(petX + 110, petY + 70, 20, 4);
+        ctx.fillRect(petX + 170, petY + 70, 20, 4);
+
+        ctx.font = "24px monospace";
+        ctx.fillText("Z", petX + 240, petY + 20);
+        ctx.fillText("Z", petX + 260, petY + 45);
+    }
+
     /* TRIANGLE TEETH */
 
     ctx.fillStyle = "#000";
 
-    // left tooth
     if(leftTooth){
 
         ctx.beginPath();
@@ -95,7 +119,6 @@ function drawPet(){
         ctx.fill();
     }
 
-    // right tooth
     if(rightTooth){
 
         ctx.beginPath();
@@ -108,16 +131,66 @@ function drawPet(){
     }
 }
 
+/* DRAW TOOTH FAIRY */
+
+function drawFairy(){
+
+    if(showFairy){
+
+        ctx.fillStyle = "#000";
+
+        // wings
+        ctx.fillRect(280, 40, 20, 20);
+        ctx.fillRect(320, 40, 20, 20);
+
+        // body
+        ctx.fillRect(300, 50, 20, 30);
+
+        // wand
+        ctx.fillRect(340, 50, 30, 4);
+
+        ctx.beginPath();
+        ctx.arc(375, 52, 6, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.font = "18px monospace";
+        ctx.fillText("✨", 280, 30);
+    }
+}
+
+/* DRAW CAR */
+
+function drawCar(){
+
+    if(hasCar){
+
+        ctx.fillStyle = "#000";
+
+        // car body
+        ctx.fillRect(250, 240, 80, 30);
+
+        // roof
+        ctx.fillRect(270, 220, 40, 20);
+
+        // wheels
+        ctx.beginPath();
+        ctx.arc(265, 275, 10, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(315, 275, 10, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
 /* DRAW PLANT */
 
 function drawPlant(){
 
     ctx.fillStyle = "#000";
 
-    // stem
     ctx.fillRect(340, 200, 10, 80);
 
-    // leaves
     ctx.fillRect(315, 200, 30, 10);
 
     ctx.fillRect(350, 225, 30, 10);
@@ -127,7 +200,7 @@ function drawPlant(){
     ctx.fillRect(350, 270, 30, 10);
 }
 
-/* RETRO GRID */
+/* GRID */
 
 function drawGrid(){
 
@@ -156,17 +229,6 @@ function updateBars(){
 
     hungerBar.style.width = hunger + "%";
     happyBar.style.width = happiness + "%";
-
-    // low stats darken screen
-
-    if(hunger < 30 || happiness < 30){
-
-        ctx.filter = "brightness(0.8)";
-
-    }else{
-
-        ctx.filter = "brightness(1)";
-    }
 }
 
 /* LOSE TOOTH */
@@ -190,54 +252,67 @@ function feedPet(type){
     hunger += 10;
     happiness += 6;
 
-    if(type === "cake"){
+    if(type === "cake") happiness += 10;
 
-        happiness += 10;
-    }
+    if(type === "ice") happiness += 5;
 
-    if(type === "ice"){
-
-        happiness += 5;
-    }
-
-    if(type === "chicken"){
-
-        hunger += 8;
-    }
+    if(type === "chicken") hunger += 8;
 
     if(hunger > 100) hunger = 100;
     if(happiness > 100) happiness = 100;
 
-    // bounce animation
     bounce = -18;
 
-    // lose tooth after eating
     loseTooth();
 
     updateBars();
 }
 
-/* BUTTON EVENTS */
+/* BUTTONS */
 
 feedBtn.addEventListener("click", () => {
 
+    sleeping = false;
     feedPet("chicken");
 
 });
 
 cakeBtn.addEventListener("click", () => {
 
+    sleeping = false;
     feedPet("cake");
 
 });
 
 iceBtn.addEventListener("click", () => {
 
+    sleeping = false;
     feedPet("ice");
 
 });
 
-/* ANIMATION LOOP */
+/* SLEEP */
+
+sleepBtn.addEventListener("click", () => {
+
+    sleeping = true;
+
+    // fairy appears if tooth missing
+
+    if(!leftTooth || !rightTooth){
+
+        showFairy = true;
+
+        setTimeout(() => {
+
+            hasCar = true;
+            showFairy = false;
+
+        }, 3000);
+    }
+});
+
+/* LOOP */
 
 function animate(){
 
@@ -249,7 +324,9 @@ function animate(){
 
     drawPet();
 
-    // bounce easing
+    drawFairy();
+
+    drawCar();
 
     if(bounce < 0){
 
@@ -265,8 +342,11 @@ animate();
 
 setInterval(() => {
 
-    hunger -= 1;
-    happiness -= 0.6;
+    if(!sleeping){
+
+        hunger -= 1;
+        happiness -= 0.6;
+    }
 
     if(hunger < 0) hunger = 0;
     if(happiness < 0) happiness = 0;
