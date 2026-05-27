@@ -30,7 +30,6 @@ let rightTooth = true;
 let showFairy = false;
 let hasCar = false;
 
-
 /* BIG PET SPRITE */
 
 const petSprite = [
@@ -86,73 +85,71 @@ function drawPet(){
     const petX = 40;
     const petY = 20 + bounce;
 
+    // draw body
     drawSprite(petSprite, petX, petY);
 
-    /* SLEEP MODE */
+    /* EYES */
 
-    if(sleeping){
+    ctx.fillStyle = "#000";
 
-        ctx.fillStyle = "#000";
+    if(!sleeping){
+
+        // open eyes
+        ctx.fillRect(petX + 105, petY + 70, 12, 12);
+        ctx.fillRect(petX + 175, petY + 70, 12, 12);
+
+    }else{
 
         // closed eyes
-        ctx.fillRect(petX + 105, petY + 70, 25, 4);
-
-        ctx.fillRect(petX + 165, petY + 70, 25, 4);
+        ctx.fillRect(petX + 100, petY + 75, 25, 4);
+        ctx.fillRect(petX + 170, petY + 75, 25, 4);
 
         // ZZZ
         ctx.font = "24px monospace";
 
         ctx.fillText("Z", petX + 250, petY + 40);
-
         ctx.fillText("Z", petX + 270, petY + 70);
     }
 
+    /* MOUTH */
 
+    ctx.fillRect(
+        petX + 110,
+        petY + 145,
+        80,
+        30
+    );
 
-/* MOUTH */
+    /* TEETH */
 
-ctx.fillStyle = "#000";
+    ctx.fillStyle = "#bcc0aa";
 
-// rectangular mouth
-ctx.fillRect(
-    petX + 110,
-    petY + 145,
-    80,
-    30
-);
+    // left tooth
+    if(leftTooth){
 
-/* TEETH */
+        ctx.beginPath();
 
-ctx.fillStyle = "#bcc0aa";
+        ctx.moveTo(petX + 125, petY + 145);
+        ctx.lineTo(petX + 138, petY + 175);
+        ctx.lineTo(petX + 151, petY + 145);
 
-// left tooth
-if(leftTooth){
+        ctx.fill();
+    }
 
-    ctx.beginPath();
+    // right tooth
+    if(rightTooth){
 
-    ctx.moveTo(petX + 125, petY + 145);
-    ctx.lineTo(petX + 138, petY + 175);
-    ctx.lineTo(petX + 151, petY + 145);
+        ctx.beginPath();
 
-    ctx.fill();
+        ctx.moveTo(petX + 155, petY + 145);
+        ctx.lineTo(petX + 168, petY + 175);
+        ctx.lineTo(petX + 181, petY + 145);
+
+        ctx.fill();
+    }
 }
 
-// right tooth
-if(rightTooth){
-
-    ctx.beginPath();
-
-    ctx.moveTo(petX + 155, petY + 145);
-    ctx.lineTo(petX + 168, petY + 175);
-    ctx.lineTo(petX + 181, petY + 145);
-
-    ctx.fill();
-}
-
-/* DRAW TOOTH FAIRY */
-
-/* PIXEL TOOTH FAIRY */
-/* REPLACE drawFairy() WITH THIS */
+/* DRAW FAIRY */
 
 function drawFairy(){
 
@@ -165,11 +162,9 @@ function drawFairy(){
 
         ctx.fillStyle = "#dff5f2";
 
-        // left wing
         ctx.fillRect(fx - 45, fy + 30, 35, 55);
         ctx.fillRect(fx - 60, fy + 45, 20, 35);
 
-        // right wing
         ctx.fillRect(fx + 55, fy + 30, 35, 55);
         ctx.fillRect(fx + 90, fy + 45, 20, 35);
 
@@ -219,15 +214,13 @@ function drawFairy(){
         ctx.fillRect(fx + 16, fy + 150, 16, 10);
         ctx.fillRect(fx + 38, fy + 150, 16, 10);
 
-        /* MAGIC SPARKLE */
+        /* SPARKLES */
 
         ctx.fillStyle = "#fff";
 
         ctx.fillRect(fx + 95, fy + 20, 8, 8);
         ctx.fillRect(fx + 105, fy + 30, 6, 6);
         ctx.fillRect(fx + 92, fy + 38, 5, 5);
-
-        /* FLOATING */
 
         ctx.font = "18px monospace";
         ctx.fillText("✨", fx + 90, fy + 15);
@@ -242,7 +235,7 @@ function drawCar(){
 
         ctx.fillStyle = "#000";
 
-        // car body
+        // body
         ctx.fillRect(250, 245, 90, 30);
 
         // roof
@@ -270,11 +263,8 @@ function drawPlant(){
 
     // leaves
     ctx.fillRect(315, 200, 30, 10);
-
     ctx.fillRect(350, 225, 30, 10);
-
     ctx.fillRect(315, 250, 30, 10);
-
     ctx.fillRect(350, 270, 30, 10);
 }
 
@@ -350,7 +340,7 @@ function feedPet(type){
     if(hunger > 100) hunger = 100;
     if(happiness > 100) happiness = 100;
 
-    // bounce
+    // bounce animation
     bounce = -18;
 
     // lose tooth
@@ -385,8 +375,7 @@ sleepBtn.addEventListener("click", () => {
 
     sleeping = true;
 
-    // tooth fairy appears if tooth missing
-
+    // fairy appears if missing tooth
     if(!leftTooth || !rightTooth){
 
         showFairy = true;
@@ -418,7 +407,6 @@ function animate(){
     drawCar();
 
     // bounce easing
-
     if(bounce < 0){
 
         bounce += 1.2;
