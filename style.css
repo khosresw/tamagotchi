@@ -1,139 +1,33 @@
-/* style.css */
+/* Add or replace food styles in style.css */
 
-body{
-    margin:0;
-    height:100vh;
+.food-bar{
+    width:100%;
     display:flex;
-    justify-content:center;
+    justify-content:space-around;
     align-items:center;
-    background:#87c8ff;
-    image-rendering: pixelated;
-    font-family:monospace;
+    padding:14px 0;
+    border-top:4px solid #000;
+    background:#c9ccb8;
 }
 
-/* PIXEL DEVICE */
-
-.tamagotchi{
-    width:420px;
-    background:#d9d9d9;
-    border:8px solid #444;
-    box-shadow:
-        0 0 0 8px #777,
-        12px 12px 0 rgba(0,0,0,0.3);
-    padding:20px;
-}
-
-/* SCREEN */
-
-.screen{
-    width:100%;
-    height:320px;
-    background:#b7f0b1;
-    border:8px solid #222;
-    position:relative;
-    overflow:hidden;
-}
-
-/* PIXEL PET */
-
-.pet{
-    position:absolute;
-    left:50%;
-    top:80px;
-    transform:translateX(-50%);
-}
-
-/* HEAD */
-
-.head{
-    width:96px;
-    height:96px;
-    background:#ffe680;
-    position:relative;
-    box-shadow:
-        0 0 0 4px #000;
-}
-
-/* EYES */
-
-.eye{
-    width:12px;
-    height:24px;
-    background:#000;
-    position:absolute;
-    top:30px;
-}
-
-.left-eye{
-    left:22px;
-}
-
-.right-eye{
-    right:22px;
-}
-
-/* CHEEKS */
-
-.cheek{
-    width:16px;
-    height:16px;
-    background:#ff8db3;
-    position:absolute;
-    top:52px;
-    opacity:0;
-}
-
-.left-cheek{
-    left:8px;
-}
-
-.right-cheek{
-    right:8px;
-}
-
-/* MOUTH */
-
-.mouth{
-    width:32px;
-    height:8px;
-    background:#000;
-    position:absolute;
-    bottom:20px;
-    left:50%;
-    transform:translateX(-50%);
-}
-
-/* STATS */
-
-.stats{
-    position:absolute;
-    bottom:10px;
-    width:100%;
-    text-align:center;
-    font-size:18px;
-    color:#000;
-}
-
-/* BUTTONS */
-
-.buttons{
-    margin-top:20px;
+.food-item{
     display:flex;
+    flex-direction:column;
+    align-items:center;
     justify-content:center;
-    gap:20px;
-}
-
-button{
-    background:#fff;
-    border:4px solid #000;
-    padding:12px 16px;
-    font-size:16px;
-    font-family:monospace;
+    font-size:28px;
     cursor:pointer;
-    box-shadow:4px 4px 0 #000;
+    transition:0.15s;
+    image-rendering:pixelated;
+    user-select:none;
 }
 
-button:active{
-    transform:translate(4px,4px);
-    box-shadow:none;
+.food-item span{
+    font-size:10px;
+    margin-top:4px;
+    text-transform:uppercase;
+}
+
+.food-item:hover{
+    transform:scale(1.12);
 }
