@@ -150,30 +150,86 @@ if(rightTooth){
 
 /* DRAW TOOTH FAIRY */
 
+/* PIXEL TOOTH FAIRY */
+/* REPLACE drawFairy() WITH THIS */
+
 function drawFairy(){
 
     if(showFairy){
 
+        const fx = 255;
+        const fy = 35;
+
+        /* WINGS */
+
+        ctx.fillStyle = "#dff5f2";
+
+        // left wing
+        ctx.fillRect(fx - 45, fy + 30, 35, 55);
+        ctx.fillRect(fx - 60, fy + 45, 20, 35);
+
+        // right wing
+        ctx.fillRect(fx + 55, fy + 30, 35, 55);
+        ctx.fillRect(fx + 90, fy + 45, 20, 35);
+
+        /* HAIR */
+
+        ctx.fillStyle = "#d85d83";
+
+        ctx.fillRect(fx, fy, 70, 40);
+        ctx.fillRect(fx - 10, fy + 10, 20, 35);
+        ctx.fillRect(fx + 60, fy + 10, 20, 35);
+
+        /* FACE */
+
+        ctx.fillStyle = "#f7c38b";
+
+        ctx.fillRect(fx + 15, fy + 35, 40, 35);
+
+        /* EYES */
+
         ctx.fillStyle = "#000";
 
-        // wings
-        ctx.fillRect(290, 50, 18, 18);
-        ctx.fillRect(330, 50, 18, 18);
+        ctx.fillRect(fx + 22, fy + 45, 6, 10);
+        ctx.fillRect(fx + 42, fy + 45, 6, 10);
 
-        // body
-        ctx.fillRect(308, 55, 22, 30);
+        /* BODY */
 
-        // wand
-        ctx.fillRect(340, 65, 28, 4);
+        ctx.fillStyle = "#36a890";
 
-        // magic orb
-        ctx.beginPath();
-        ctx.arc(373, 67, 6, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.fillRect(fx + 12, fy + 70, 46, 55);
 
-        ctx.font = "20px monospace";
+        /* ARMS */
 
-        ctx.fillText("✨", 285, 35);
+        ctx.fillStyle = "#f7c38b";
+
+        ctx.fillRect(fx - 10, fy + 70, 22, 10);
+        ctx.fillRect(fx + 58, fy + 70, 22, 10);
+
+        /* LEGS */
+
+        ctx.fillRect(fx + 20, fy + 125, 10, 30);
+        ctx.fillRect(fx + 42, fy + 125, 10, 30);
+
+        /* SHOES */
+
+        ctx.fillStyle = "#36a890";
+
+        ctx.fillRect(fx + 16, fy + 150, 16, 10);
+        ctx.fillRect(fx + 38, fy + 150, 16, 10);
+
+        /* MAGIC SPARKLE */
+
+        ctx.fillStyle = "#fff";
+
+        ctx.fillRect(fx + 95, fy + 20, 8, 8);
+        ctx.fillRect(fx + 105, fy + 30, 6, 6);
+        ctx.fillRect(fx + 92, fy + 38, 5, 5);
+
+        /* FLOATING */
+
+        ctx.font = "18px monospace";
+        ctx.fillText("✨", fx + 90, fy + 15);
     }
 }
 
