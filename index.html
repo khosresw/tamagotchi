@@ -1,46 +1,50 @@
 <!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oval Tamagotchi</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixel Tamagotchi</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="tamagotchi">
 
-  <div class="screen">
+    <div class="screen">
 
-    <div class="face">
+        <div class="pet">
 
-      <div class="eyes">
-        <div class="eye"></div>
-        <div class="eye"></div>
-      </div>
+            <div class="head">
 
-      <div class="cheeks">
-        <div class="cheek left-cheek"></div>
-        <div class="cheek right-cheek"></div>
-      </div>
+                <div class="eye left-eye"></div>
+                <div class="eye right-eye"></div>
 
-      <div class="mouth"></div>
+                <div class="cheek left-cheek cheek"></div>
+                <div class="cheek right-cheek cheek"></div>
+
+                <div class="mouth"></div>
+
+            </div>
+
+        </div>
+
+        <div class="stats">
+            💧 <span id="water">100</span>
+            &nbsp;&nbsp;
+            🍎 <span id="food">100</span>
+            <br>
+            <span id="mood">HAPPY</span>
+        </div>
 
     </div>
 
-    <div class="stats">
-      <p>💧 Water: <span id="water">100</span></p>
-      <p>🍎 Hunger: <span id="food">100</span></p>
-      <p>😊 Mood: <span id="mood">Happy</span></p>
+    <div class="buttons">
+        <button id="waterBtn">💧 WATER</button>
+        <button id="appleBtn">🍎 APPLE</button>
     </div>
-
-  </div>
-
-  <div class="buttons">
-    <button id="waterBtn">💧 Give Water</button>
-    <button id="appleBtn">🍎 Give Apple</button>
-  </div>
 
 </div>
 
