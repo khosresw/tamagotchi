@@ -10,7 +10,7 @@ const feedBtn = document.getElementById("feedBtn");
 const cakeBtn = document.getElementById("cakeBtn");
 const iceBtn = document.getElementById("iceBtn");
 
-const pixelSize = 12;
+const pixelSize = 10;
 
 let hunger = 80;
 let happiness = 90;
@@ -18,28 +18,32 @@ let happiness = 90;
 let blushTimer = 0;
 let bounce = 0;
 
-/* PET SPRITE */
+/* BIGGER PET SPRITE */
 
 const petSprite = [
-"................",
-"................",
-"................",
-"......f..f......",
-".....ffffff.....",
-".....f....f.....",
-"....ff....ff....",
-"....f.f..f.f....",
-"....f......ff...",
-"....f..ff...f...",
-"....f.......f...",
-"....fffffffff...",
-"................",
-"................",
-"................",
-"................"
+"................................",
+"................................",
+"................................",
+"...........ff....ff............",
+".........ffffffffffff..........",
+"........ffffffffffffff.........",
+"........fff........fff.........",
+".......ffff........ffff........",
+".......fff..........fff........",
+".......fff..ff..ff..fff........",
+".......fff..........fff........",
+".......fff..........fff........",
+".......ffff........ffff........",
+"........ffffffffffffff.........",
+".........ffffffffffff..........",
+"...........ffffffff............",
+".........ffff..ffff............",
+"........fff......fff...........",
+"................................",
+"................................"
 ];
 
-/* DRAW PIXEL */
+/* DRAW PIXELS */
 
 function drawSprite(sprite, x, y){
 
@@ -66,20 +70,32 @@ function drawSprite(sprite, x, y){
 
 function drawPet(){
 
-    const petX = 110;
-    const petY = 60 + bounce;
+    const petX = 40;
+    const petY = 20 + bounce;
 
     drawSprite(petSprite, petX, petY);
 
-    /* CHEEKS */
+    /* BLUSH CHEEKS */
 
     if(blushTimer > 0){
 
         ctx.fillStyle = "#ff8db3";
 
-        ctx.fillRect(petX + 15, petY + 105, 12, 12);
+        // left cheek
+        ctx.fillRect(
+            petX + 78,
+            petY + 122,
+            14,
+            14
+        );
 
-        ctx.fillRect(petX + 160, petY + 105, 12, 12);
+        // right cheek
+        ctx.fillRect(
+            petX + 190,
+            petY + 122,
+            14,
+            14
+        );
 
         blushTimer--;
     }
@@ -91,14 +107,20 @@ function drawPlant(){
 
     ctx.fillStyle = "#000";
 
-    ctx.fillRect(320, 180, 10, 70);
+    // stem
+    ctx.fillRect(340, 200, 10, 80);
 
-    ctx.fillRect(300, 180, 30, 10);
+    // leaves
+    ctx.fillRect(315, 200, 30, 10);
 
-    ctx.fillRect(330, 210, 30, 10);
+    ctx.fillRect(350, 225, 30, 10);
+
+    ctx.fillRect(315, 250, 30, 10);
+
+    ctx.fillRect(350, 270, 30, 10);
 }
 
-/* BACKGROUND GRID */
+/* RETRO GRID */
 
 function drawGrid(){
 
@@ -127,9 +149,20 @@ function updateBars(){
 
     hungerBar.style.width = hunger + "%";
     happyBar.style.width = happiness + "%";
+
+    // low stats = sad squish
+
+    if(hunger < 30 || happiness < 30){
+
+        ctx.filter = "brightness(0.8)";
+
+    }else{
+
+        ctx.filter = "brightness(1)";
+    }
 }
 
-/* FEED */
+/* FEED PET */
 
 function feedPet(type){
 
@@ -137,37 +170,53 @@ function feedPet(type){
     happiness += 6;
 
     if(type === "cake"){
-        happiness += 8;
+
+        happiness += 10;
     }
 
     if(type === "ice"){
-        happiness += 4;
+
+        happiness += 5;
+    }
+
+    if(type === "chicken"){
+
+        hunger += 8;
     }
 
     if(hunger > 100) hunger = 100;
     if(happiness > 100) happiness = 100;
 
-    blushTimer = 40;
-    bounce = -15;
+    // cheeks
+    blushTimer = 45;
+
+    // bounce
+    bounce = -18;
 
     updateBars();
 }
 
-/* BUTTONS */
+/* BUTTON EVENTS */
 
 feedBtn.addEventListener("click", () => {
+
     feedPet("chicken");
+
 });
 
 cakeBtn.addEventListener("click", () => {
+
     feedPet("cake");
+
 });
 
 iceBtn.addEventListener("click", () => {
+
     feedPet("ice");
+
 });
 
-/* LOOP */
+/* ANIMATION LOOP */
 
 function animate(){
 
@@ -179,8 +228,11 @@ function animate(){
 
     drawPet();
 
+    // bounce easing
+
     if(bounce < 0){
-        bounce += 1;
+
+        bounce += 1.2;
     }
 
     requestAnimationFrame(animate);
@@ -193,7 +245,7 @@ animate();
 setInterval(() => {
 
     hunger -= 1;
-    happiness -= 0.5;
+    happiness -= 0.6;
 
     if(hunger < 0) hunger = 0;
     if(happiness < 0) happiness = 0;
