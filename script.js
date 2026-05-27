@@ -1,104 +1,55 @@
-// script.js
+// Replace food button logic in script.js with this
 
-const waterText = document.getElementById("water");
-const foodText = document.getElementById("food");
-const moodText = document.getElementById("mood");
+const foodItems = document.querySelectorAll(".food-item");
 
-const waterBtn = document.getElementById("waterBtn");
-const appleBtn = document.getElementById("appleBtn");
+foodItems.forEach(item => {
 
-const cheeks = document.querySelectorAll(".cheek");
-const mouth = document.querySelector(".mouth");
-const head = document.querySelector(".head");
+    item.addEventListener("click", () => {
 
-let water = 100;
-let food = 100;
+        const foodType = item.dataset.food;
 
-function updatePet(){
+        food += 15;
 
-    waterText.textContent = water;
-    foodText.textContent = food;
+        if(food > 100){
+            food = 100;
+        }
 
-    if(water > 60 && food > 60){
-
-        moodText.textContent = "HAPPY";
-
-        head.style.background = "#ffe680";
-        mouth.style.height = "8px";
-    }
-
-    else if(water > 30 && food > 30){
-
-        moodText.textContent = "OKAY";
-
-        head.style.background = "#fff199";
-    }
-
-    else{
-
-        moodText.textContent = "SAD";
-
-        head.style.background = "#bdbdbd";
-
-        mouth.style.height = "4px";
-    }
-}
-
-waterBtn.addEventListener("click", () => {
-
-    water += 20;
-
-    if(water > 100){
-        water = 100;
-    }
-
-    updatePet();
-});
-
-appleBtn.addEventListener("click", () => {
-
-    food += 20;
-
-    if(food > 100){
-        food = 100;
-    }
-
-    // cheeks visible
-    cheeks.forEach(c => {
-        c.style.opacity = "1";
-    });
-
-    // hide cheeks later
-    setTimeout(() => {
-
+        // blush cheeks
         cheeks.forEach(c => {
-            c.style.opacity = "0";
+            c.style.opacity = "1";
         });
 
-    }, 2000);
+        setTimeout(() => {
 
-    // bounce
-    head.animate([
-        { transform:"translateY(0px)" },
-        { transform:"translateY(-8px)" },
-        { transform:"translateY(0px)" }
-    ], {
-        duration:250
+            cheeks.forEach(c => {
+                c.style.opacity = "0";
+            });
+
+        }, 2000);
+
+        // bounce animation
+        pet.animate([
+            { transform:"translateY(0px)" },
+            { transform:"translateY(-10px)" },
+            { transform:"translateY(0px)" }
+        ], {
+            duration:250
+        });
+
+        // mood text
+        if(foodType === "chicken"){
+            moodText.textContent = "PROTEIN BOOST";
+        }
+
+        if(foodType === "cake"){
+            moodText.textContent = "SUGAR RUSH";
+        }
+
+        if(foodType === "icecream"){
+            moodText.textContent = "VERY HAPPY";
+        }
+
+        updatePet();
     });
 
-    updatePet();
 });
-
-setInterval(() => {
-
-    water--;
-    food--;
-
-    if(water < 0) water = 0;
-    if(food < 0) food = 0;
-
-    updatePet();
-
-}, 1000);
-
-updatePet();
