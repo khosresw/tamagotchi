@@ -7,10 +7,9 @@ const moodText = document.getElementById("mood");
 const waterBtn = document.getElementById("waterBtn");
 const appleBtn = document.getElementById("appleBtn");
 
-const mouth = document.querySelector(".mouth");
-const screen = document.querySelector(".screen");
-
 const cheeks = document.querySelectorAll(".cheek");
+const mouth = document.querySelector(".mouth");
+const head = document.querySelector(".head");
 
 let water = 100;
 let food = 100;
@@ -22,28 +21,26 @@ function updatePet(){
 
     if(water > 60 && food > 60){
 
-        moodText.textContent = "Happy";
-        screen.style.background = "#c8ffd5";
+        moodText.textContent = "HAPPY";
 
-        mouth.style.borderBottom = "6px solid black";
-        mouth.style.borderTop = "none";
-        mouth.style.borderRadius = "0 0 60px 60px";
+        head.style.background = "#ffe680";
+        mouth.style.height = "8px";
     }
 
     else if(water > 30 && food > 30){
 
-        moodText.textContent = "Okay";
-        screen.style.background = "#fff3a8";
+        moodText.textContent = "OKAY";
+
+        head.style.background = "#fff199";
     }
 
     else{
 
-        moodText.textContent = "Sad";
-        screen.style.background = "#ffc7c7";
+        moodText.textContent = "SAD";
 
-        mouth.style.borderBottom = "none";
-        mouth.style.borderTop = "6px solid black";
-        mouth.style.borderRadius = "60px 60px 0 0";
+        head.style.background = "#bdbdbd";
+
+        mouth.style.height = "4px";
     }
 }
 
@@ -66,25 +63,27 @@ appleBtn.addEventListener("click", () => {
         food = 100;
     }
 
-    // Pink cheeks appear
+    // cheeks visible
     cheeks.forEach(c => {
         c.style.opacity = "1";
     });
 
-    // Hide cheeks after 2 sec
+    // hide cheeks later
     setTimeout(() => {
+
         cheeks.forEach(c => {
             c.style.opacity = "0";
         });
+
     }, 2000);
 
-    // Bounce animation
-    screen.animate([
-        { transform: "scale(1)" },
-        { transform: "scale(1.05)" },
-        { transform: "scale(1)" }
+    // bounce
+    head.animate([
+        { transform:"translateY(0px)" },
+        { transform:"translateY(-8px)" },
+        { transform:"translateY(0px)" }
     ], {
-        duration: 300
+        duration:250
     });
 
     updatePet();
